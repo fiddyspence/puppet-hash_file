@@ -1,6 +1,6 @@
 {
   "name": "fiddyspence-hash_file",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Chris Spence",
   "license": "Apache-2.0",
   "summary": "Type and providers for managing YAML and JSON data",
@@ -16,9 +16,6 @@
     {
     "operatingsystem":"Ubuntu",
     "operatingsystemrelease":[ "12.04","10.04","14.10" ]
-    },
-    {
-    "operatingsystem":"Windows"
     },
     {
     "operatingsystem":"Debian",

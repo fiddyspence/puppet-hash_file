@@ -23,3 +23,4 @@ See LICENSE file
 Changelog:
 
  - 15 April 2015 - initial release
+ - 15 April 2015 - I probably lied about Windows
