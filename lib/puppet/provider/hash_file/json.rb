@@ -24,7 +24,7 @@ Puppet::Type.type(:hash_file).provide(:json) do
   end
 
   def create
-    Puppet::Util.withumask(umask) { ::File.open(self[:path], 'wb', mode_int ) { |f| write_content(f) } }
+    Puppet::Util.withumask(umask) { ::File.open(self[:path], 'wb', mode_int ) { |f| write_content(f.to_json) } }
   end
 
   def value
