@@ -9,7 +9,7 @@ Puppet::Type.newtype(:hash_file) do
   end
 
   newproperty(:value) do
-    desc "the value that the running kernel should be set to"
+    desc "the value that hash should be"
     defaultto {}
     validate do |value|
       unless value.is_a?(Hash)

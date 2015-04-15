@@ -13,7 +13,7 @@ EXAMPLE USAGE:
     $foo = hiera(foo)
     hash_file { '/tmp/hash': value => $foo, provider => 'json' }
 
-    fids: cat /tmp/hash
+    fids$ cat /tmp/hash
     {"bar":{"baz":"foo","moo":1,"cow":"1"}}
 
 License:
