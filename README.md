@@ -2,7 +2,19 @@ This is a puppet module to manage a file as a hash of either JSON or YAML data
 
 EXAMPLE USAGE:
 
-    hash_file { '/tmp/hash': value => { 1 => 2 }, provider => 'yaml' }
+    fids$ cat /tmp/hiera/common.yaml
+    ---
+    foo:
+      bar:
+       baz: 'foo'
+       moo: 1
+       cow: '1'
+
+    $foo = hiera(foo)
+    hash_file { '/tmp/hash': value => $foo, provider => 'json' }
+
+    fids: cat /tmp/hash
+    {"bar":{"baz":"foo","moo":1,"cow":"1"}}
 
 License:
 
