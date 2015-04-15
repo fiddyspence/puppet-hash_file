@@ -46,7 +46,7 @@ Puppet::Type.type(:hash_file).provide(:json) do
       file.flush
     end
   end
-  def umase
+  def umask
     umask = mode ? 000 : 022
   end
   def mode
