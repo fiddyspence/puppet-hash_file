@@ -21,7 +21,7 @@ Puppet::Type.type(:hash_file).provide(:yaml) do
   end
 
   def create
-    Puppet::Util.withumask(umask) { ::File.open(self[:path], 'wb', mode_int ) { |f| write_content(f.to_yaml) } }
+    Puppet::Util.withumask(umask) { ::File.open(self[:path], 'wb', mode_int ) { |f| write_content(self[:value].to_yaml) } }
   end
 
   def value
