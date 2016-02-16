@@ -9,7 +9,7 @@ Puppet::Type.type(:hash_file).provide(:json) do
     require 'json'
     confine :true => true
     defaultfor :feature => :posix
-    defaultfor :feature => :windows
+    defaultfor :feature => :microsoft_windows
   rescue LoadError 
     # mark the provider as unsuitable - there has to be a better way that this, but hacksy hacksy
     confine :true => false
