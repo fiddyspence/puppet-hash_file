@@ -13,7 +13,7 @@ Puppet::Type.newtype(:hash_file) do
     defaultto {}
     validate do |value|
       unless value.is_a?(Hash)
-        raise ArgumentError, "Path is not a fully qualified path: #{value}"
+        raise ArgumentError, "Value is not of type Hash"
       end
     end
   end
