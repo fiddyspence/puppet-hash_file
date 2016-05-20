@@ -35,6 +35,19 @@ EXAMPLE USAGE:
         moo: 1
         cow: "1"
 
+File wrapper:
+
+This also comes with a defined type, allowing you to easily manage the properties of the
+data file that gets created. For example,
+
+    hash_file::file { '/tmp/hash.yaml':
+      owner    => 'root',
+      group    => 'root',
+      mode     => '0644',
+      value    => {"bar"=>{"baz"=>"foo", "moo"=>1, "cow"=>"1"}},
+      provider => 'yaml',
+    }
+
 License:
 
 See LICENSE file
