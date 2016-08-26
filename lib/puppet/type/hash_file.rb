@@ -16,6 +16,27 @@ Puppet::Type.newtype(:hash_file) do
         raise ArgumentError, "Value is not of type Hash"
       end
     end
+
+    # convert strings like ":thing" to a symbolic representation, :thing
+    # This is needed to manage symbol keys in yaml files.
+    munge do |value|
+      return value unless resource[:provider] == :yaml
+      resource.symbolize_keys(value)
+    end
+  end
+
+  def symbolize_keys(data)
+    data.each_with_object({}) do |item, memo|
+      key, val = item
+
+      val = symbolize_keys(val) if val.class == Hash
+
+      if key =~ /^:/
+        memo[key[1..-1].to_sym] = val
+      else
+        memo[key] = val
+      end
+    end
   end
 
 end
