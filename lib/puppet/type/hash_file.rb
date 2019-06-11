@@ -8,7 +8,7 @@ Puppet::Type.newtype(:hash_file) do
     desc "the path of the file - manage this separately with a file resource if you care about permissions and stuff"
   end
 
-  newproperty(:value) do
+  newproperty(:value, :array_matching => :all) do
     desc "the value that hash should be"
     defaultto {}
     validate do |value|

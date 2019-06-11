@@ -1,7 +1,7 @@
 require 'puppet/util'
 require 'fileutils'
 require 'puppet/util/symbolic_file_mode'
-Puppet::Type.type(:hash_file).provide(:yaml) do
+Puppet::Type.type(:hash_file).provide(:yaml_multidoc) do
 
   include Puppet::Util::SymbolicFileMode
 
@@ -26,7 +26,13 @@ Puppet::Type.type(:hash_file).provide(:yaml) do
 
   def value
     begin
-      [ YAML::load(File.read(@resource[:path])) ] if File.exists?(@resource[:path])
+      if File.exists?(@resource[:path])
+        res = []
+        YAML.load_stream(File.open(@resource[:path])) do |doc|
+          res << doc
+        end
+        res
+      end
     rescue Errno::ENOENT
       Puppet.debug "Could not open #{@resource[:path]}"
     end
@@ -37,7 +43,9 @@ Puppet::Type.type(:hash_file).provide(:yaml) do
     Puppet.debug "mode_int is : mode_int"
     Puppet::Util.replace_file(@resource[:path], mode_int) do |file|
       file.binmode
-      file.write thehash[0].to_yaml
+      thehash.each do |doc|
+        file.write doc.to_yaml
+      end
       file.flush
     end
   end
